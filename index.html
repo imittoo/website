@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <style>
+      body {
+        background-color: #2b2b2b;
+        text-align: center;
+      }
+
+      #page {
+        height: 99%;
+        min-height: 99%;
+        display: grid;
+        grid-template-rows: 1fr 100px;
+        grid-template-columns: 100%;
+
+        margin-top: 15px;
+      }
+
+      #footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      #main-picture img {
+        height: 100%;
+      }
+
+      input {
+        background-color: #0000;
+        border: none;
+        text-align: center;
+        font-size: 2.4rem;
+
+        /* Hide Cursor */
+        color: transparent;
+        text-shadow: 0 0 0 #8b8b8b;
+        outline: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page">
+      <div id="main-picture"></div>
+      <div id="footer">
+        <input placeholder="random" id="filter" />
+      </div>
+    </div>
+
+    <script>
+      var refresh_interval = 15000;
+      var resolution = ""; // e.g. 1280x720
+      var _cache_kill = 0;
+      var main_picture = $("#main-picture");
+
+      function refreshPicture() {
+        var img = $("<img/>").hide().attr('src', 'https://source.unsplash.com/random/' + resolution + '?' +
+                  $("#filter").val().replace(/\s/g, "") + '&a=' + (_cache_kill++))
+          .on('load', function() {
+            if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+              console.log('broken image!');
+            } else {
+              var old = $("img", main_picture);
+
+              if(old.length) {
+                old.fadeOut(300, function() {
+                  main_picture.empty().append(img.fadeIn(300));
+                });
+              } else
+                main_picture.empty().append(img.fadeIn(300));
+            }
+          });
+      }
+
+      $(refreshPicture);
+
+      // clear input on click
+      $("#filter").click(function(){
+        $(this).val("");
+      });
+
+      var interval = setInterval(refreshPicture, refresh_interval);
+
+      // change image on click
+      main_picture.click(function(){
+        clearInterval(interval);
+        refreshPicture();
+
+        interval = setInterval(refreshPicture, refresh_interval);
+      });
+    </script>
+  </body>
+</html>
