@@ -1,102 +1,108 @@
-<html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!DOCTYPE HTML>
 
-    <style>
-      body {
-        background-color: #2b2b2b;
-        text-align: center;
-      }
+<html lang='en'>
+	<head>
+	<meta name="generator" content="Hugo 0.44" />
+		<title>Mittoo Zone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href='/assets/css/main.css' />
+		
+		<noscript><link rel="stylesheet" href='/assets/css/noscript.css' /></noscript>
+	</head>
 
-      #page {
-        height: 99%;
-        min-height: 99%;
-        display: grid;
-        grid-template-rows: 1fr 100px;
-        grid-template-columns: 100%;
+	<body lang='en' class="is-loading">
 
-        margin-top: 15px;
-      }
+		
+		
+		
 
-      #footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+		
+		
 
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
+		
+			
+		
+		
 
-      #main-picture img {
-        height: 100%;
-      }
+		
 
-      input {
-        background-color: #0000;
-        border: none;
-        text-align: center;
-        font-size: 2.4rem;
+		
+			<div id="wrapper" class="fade-in" data-pfn="post" data-ps="6" data-pfp="true">
 
-        /* Hide Cursor */
-        color: transparent;
-        text-shadow: 0 0 0 #8b8b8b;
-        outline: none;
+				
+				
 
-        &:focus {
-          outline: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="page">
-      <div id="main-picture"></div>
-      <div id="footer">
-        <input placeholder="random" id="filter" />
-      </div>
-    </div>
 
-    <script>
-      var refresh_interval = 15000;
-      var resolution = ""; // e.g. 1280x720
-      var _cache_kill = 0;
-      var main_picture = $("#main-picture");
+				
 
-      function refreshPicture() {
-        var img = $("<img/>").hide().attr('src', 'https://source.unsplash.com/random/' + resolution + '?' +
-                  $("#filter").val().replace(/\s/g, "") + '&a=' + (_cache_kill++))
-          .on('load', function() {
-            if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-              console.log('broken image!');
-            } else {
-              var old = $("img", main_picture);
+				
+<header id="header">
+    <a href='/' class="logo">Mittoo Zone</a>
+</header>
 
-              if(old.length) {
-                old.fadeOut(300, function() {
-                  main_picture.empty().append(img.fadeIn(300));
-                });
-              } else
-                main_picture.empty().append(img.fadeIn(300));
-            }
-          });
-      }
+				
 
-      $(refreshPicture);
+<nav id="nav">
+    <ul class="links">
+        <li class="active"><a href='/'>Mittoo Zone</a></li>
+        
+        
+    </ul>
+    
+</nav>
 
-      // clear input on click
-      $("#filter").click(function(){
-        $(this).val("");
-      });
 
-      var interval = setInterval(refreshPicture, refresh_interval);
+				
+					<div id="main">
 
-      // change image on click
-      main_picture.click(function(){
-        clearInterval(interval);
-        refreshPicture();
+						
+						
 
-        interval = setInterval(refreshPicture, refresh_interval);
-      });
-    </script>
-  </body>
+
+
+						
+						
+
+<section class="posts">
+    
+</section>
+
+
+						
+						
+
+					</div>
+
+					
+
+<footer id="footer">
+    
+    <section class="split contact">
+        
+        
+        
+        
+    </section>
+</footer>
+
+					
+<div id="copyright">
+    <ul><li>&copy; Mittoo Zone</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li><li>Hugo Port: <a href="https://curtistimson.co.uk">curttimson</a></li></ul>
+</div>
+
+			</div>
+
+			
+			
+<script src='/assets/js/jquery.min.js'></script>
+<script src='/assets/js/jquery.scrollex.min.js'></script>
+<script src='/assets/js/jquery.scrolly.min.js'></script>
+<script src='/assets/js/skel.min.js'></script>
+<script src='/assets/js/util.js'></script>
+<script src='/assets/js/main.js'></script>
+
+
+
+	</body>
 </html>
